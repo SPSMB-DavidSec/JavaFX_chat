@@ -21,7 +21,7 @@ public class MqttClient {
 
     }
 
-    public void subscribe(ClientEventHandler clientEventHandler){
+    public void subscribe(ClientEventHandler clientEventHandler) {
         client.toAsync().subscribeWith()
                 .topicFilter(TOPIC)
                 .qos(MqttQos.AT_LEAST_ONCE)
@@ -30,7 +30,7 @@ public class MqttClient {
         System.out.println("subscribed");
     }
 
-    public void sendMessage(Message message){
+    public void sendMessage(Message message) {
         client.publishWith()
                 .topic(TOPIC)
                 .qos(MqttQos.AT_LEAST_ONCE)

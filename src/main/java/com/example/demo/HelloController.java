@@ -2,11 +2,9 @@ package com.example.demo;
 
 import com.example.demo.client.Message;
 import com.example.demo.client.MqttClient;
-import com.example.demo.client.MyMessage;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -17,12 +15,9 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ResourceBundle;
 
 public class HelloController extends ClientEventHandler implements Initializable {
-    @FXML
-    private Label welcomeText;
     @FXML
     private TextArea textArea;
     @FXML
@@ -37,15 +32,14 @@ public class HelloController extends ClientEventHandler implements Initializable
     @Override
     public void onMessageReceived(Message message) {
         Platform.runLater(() -> {
-           textFlowMessages.getChildren().add(new Text(message.getContentAsString() + '\n'));
+            textFlowMessages.getChildren().add(new Text(message.getContentAsString() + '\n'));
         });
     }
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void onSendButtonClick() {
         String message = textArea.getText();
-        client.sendMessage(new MyMessage(message.getBytes()));
-        welcomeText.setText("Welcome to JavaFX Application!");
+        client.sendMessage(new Message(message.getBytes()));
     }
 
     @Override

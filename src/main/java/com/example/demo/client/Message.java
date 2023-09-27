@@ -13,11 +13,12 @@ public class Message {
     public byte[] getContent() {
         return content;
     }
+
     public String getContentAsString() {
         return new String(content);
     }
 
-    public void setContent(String mesasge){
+    public void setContent(String mesasge) {
         this.content = mesasge.getBytes(StandardCharsets.UTF_8);
     }
 
